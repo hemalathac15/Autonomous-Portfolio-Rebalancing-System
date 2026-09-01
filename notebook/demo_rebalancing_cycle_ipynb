@@ -1,0 +1,24 @@
+import numpy as np
+from agents.orchestrator import RebalanceOrchestrator
+from explainability.client_explainer import ClientExplainer
+
+#Setup dummy market parameters for 6 asset classes
+target_weights = np.array([0.40, 0.15, 0.25, 0.10, 0.05, 0.05])
+cov_matrix = np.eye(6) * 0.02 #Covariance matrix
+
+#Initialize Orchestrator
+orchestrator = RebalanceOrchestrator(target_weights, cov_matrix)
+
+#Simulate a portfolio that drifted significantly in Indian Equity (Asset 0)
+drifted_holdings = np.array([600000, 100000, 200000, 50000, 25000, 25000]) #Total = 1,000,000
+
+#Process Cycle
+result = orchestrator.process_portfolio("PORT_99823", drifted_holdings)
+
+#Output Analysis
+print("--- AGENT EXECUTION DECISION ---")
+print(result)
+
+print("\n--- CLIENT EXPLANATION GENERATED ---")
+explanation = ClientExplainer.generate_narrative("PORT_99823",result)
+print(explanation)
