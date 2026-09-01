@@ -53,7 +53,7 @@ An autonomous, multi-agent financial portfolio rebalancing platform built with P
 +-----------------------------------------------------------------------+
 
 📁 Repository Structure
-autonomous-portfolio-agent/
+autonomous-portfolio-rebalancing-agent/
 │
 ├── agents/                 # Multi-agent specialized workforce
 │   ├── compliance_officer.py
